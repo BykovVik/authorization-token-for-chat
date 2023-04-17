@@ -19,6 +19,5 @@ function RouteGuard() {
     
 
 }
- 
   
- export default RouteGuard;
+export default RouteGuard;

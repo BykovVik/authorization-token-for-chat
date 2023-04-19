@@ -1,9 +1,23 @@
-import React from "react";
+import { useEffect} from "react";
 
-function ChatBoard() {
+type Props = {
+    changeState: Function
+}
+
+function ChatBoard(props:Props) {
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            localStorage.clear()
+            props.changeState(false)
+        }, 300000);
+        return () => clearTimeout(timer);
+    }, []);
+
+
     return (
         <div className="Alert-box">
-            <h1>Это Чат</h1>
+            <h1>This is chat</h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda asperiores non eos quaerat unde est laborum dolore ad eaque officia! Totam quia iure aut tempore obcaecati reprehenderit, consequatur fugit ut.</p>
         </div>
     )

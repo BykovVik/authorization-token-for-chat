@@ -1,23 +1,24 @@
-import React from "react";
-import { redirect } from "react-router-dom";
+import { useState } from "react";
+import AuthBoard from "../Pages/AuthBoard";
+import ChatBoard from "../Pages/Chat";
 
-
+var flag
+var page
  
 function RouteGuard() {
-    let flag = false;
-  
-    //check user has JWT token
+
+    const [reload, setReload] = useState(false);
+
     localStorage.getItem("token") ? flag=true : flag=false
-  
-    
-    if(flag) {
-        return(redirect("/chat"))
+
+    if (flag) {
+        page = <ChatBoard changeState={setReload}/>
+    } else {
+        page = <AuthBoard changeState={setReload}/>
     }
-    else
-        return(redirect("/"))
             
-    
+    return(page)
 
 }
-  
+
 export default RouteGuard;
